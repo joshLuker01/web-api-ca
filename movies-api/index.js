@@ -2,11 +2,11 @@ import dotenv from 'dotenv';
 import authenticate from './authenticate/index.js';
 dotenv.config();
 
+import moviesRouter from './api/movies/index.js';
 import express from 'express';
 import cors from 'cors';
 
 import { connectDB } from './db/index.js';
-
 import usersRouter from './api/users/index.js';
 
 const app = express();
@@ -22,6 +22,7 @@ app.get('/', (req, res) => {
 
 
 app.use('/api/users', usersRouter);
+app.use('/api/movies', moviesRouter);
 
 app.use((req, res) => {
   res.status(404).json({
